@@ -9,13 +9,19 @@ public class Timer : MonoBehaviour
     public float countDownTimer = 5f;
 
     [Header("Things to stop")]
-    public PlayerCarController playerCarController;
+    private Transform player;
+    public CarController carController;
 
     public TMP_Text countDownText;
 
     void Start()
     {
-        playerCarController.enabled = false;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        if (player.GetComponent<CarController>() != null)
+        {
+            carController = player.GetComponent<CarController>();
+        }
+        carController.enabled = false;
         StartCoroutine(UpdateTimer());
     }
 
@@ -33,7 +39,7 @@ public class Timer : MonoBehaviour
             countDownTimer--;
         }
 
-        playerCarController.enabled = true;
+        carController.enabled = true;
         countDownText.text = "Start!";
         yield return new WaitForSeconds(1f);
         countDownText.gameObject.SetActive(false);

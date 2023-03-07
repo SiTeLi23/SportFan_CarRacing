@@ -30,7 +30,7 @@ public class PlayerCarController : MonoBehaviour
     {
         MoveCar();
         CarSteering();
-        ApplyBreak();
+        //ApplyBreak();
     }
 
 
@@ -38,7 +38,7 @@ public class PlayerCarController : MonoBehaviour
     private void MoveCar() 
     {
        presentAcceleration = accelerationForce * Input.GetAxis("Vertical");
-
+        presentAcceleration = accelerationForce * SimpleInput.GetAxis("Vertical");
         //Forward
         frontLeftWheelCollider.motorTorque = presentAcceleration;
         frontRightWheelCollider.motorTorque = presentAcceleration;
@@ -51,6 +51,7 @@ public class PlayerCarController : MonoBehaviour
     private void CarSteering() 
     {
         presentTurnAngle = wheelsTorque * Input.GetAxis("Horizontal");
+        presentTurnAngle = wheelsTorque * SimpleInput.GetAxis("Horizontal");
         frontLeftWheelCollider.steerAngle = presentTurnAngle;
         frontRightWheelCollider.steerAngle = presentTurnAngle;
 
@@ -82,6 +83,30 @@ public class PlayerCarController : MonoBehaviour
         {
             presentBreakForce = 0f;
         }
+
+        frontLeftWheelCollider.brakeTorque = presentBreakForce;
+        frontRightWheelCollider.brakeTorque = presentBreakForce;
+        backLeftWheelCollider.brakeTorque = presentBreakForce;
+        backRightWheelCollider.brakeTorque = presentBreakForce;
+    }
+
+    public void MobileBreak() 
+    {
+        StartCoroutine(carBreaks());
+    }
+
+    IEnumerator carBreaks() 
+    {
+        presentBreakForce = breakingForce;
+
+        frontLeftWheelCollider.brakeTorque = presentBreakForce;
+        frontRightWheelCollider.brakeTorque = presentBreakForce;
+        backLeftWheelCollider.brakeTorque = presentBreakForce;
+        backRightWheelCollider.brakeTorque = presentBreakForce;
+
+        yield return new WaitForSeconds(2f);
+
+        presentBreakForce = 0f;
 
         frontLeftWheelCollider.brakeTorque = presentBreakForce;
         frontRightWheelCollider.brakeTorque = presentBreakForce;

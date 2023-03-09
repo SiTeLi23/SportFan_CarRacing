@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Timer : MonoBehaviour
+public class CountDownTimer : MonoBehaviour
 {
     [Header("Timer")]
     public float countDownTimer = 5f;
@@ -40,9 +40,12 @@ public class Timer : MonoBehaviour
         }
 
         carController.enabled = true;
-        countDownText.text = "Start!";
+        countDownText.text = "GO!";
+        CurrentLevelManager.instance.GameStart();
         yield return new WaitForSeconds(1f);
+        
         countDownText.gameObject.SetActive(false);
+        
     }
 
 }

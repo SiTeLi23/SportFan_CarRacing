@@ -34,7 +34,7 @@ public class UIManager : MonoBehaviour
     {
        GameObject c= Instantiate(coinTextPopOut,transform.position,Quaternion.identity);
         c.transform.SetParent(transform);
-        coinTextPopOut.GetComponent<TextPopOut>().popOutText.text = "Coins+ : " + amount.ToString();
+        coinTextPopOut.GetComponent<TextPopOut>().popOutText.text = "Coins+ " + amount.ToString();
         Destroy(c, 1f);
     }
        

@@ -41,11 +41,24 @@ public class CarController : MonoBehaviour
         }
 
 
-        turnInput = Input.GetAxis("Horizontal");
+        if (SimpleInput.GetAxis("Vertical") > 0)
+        {
+            speedInput = SimpleInput.GetAxis("Vertical") * forwardAccel * 1000f;
+        }
+        else if (SimpleInput.GetAxis("Vertical") < 0)
+        {
+            speedInput = SimpleInput.GetAxis("Vertical") * reverseAccel * 1000f;
+        }
 
+
+
+        turnInput = Input.GetAxis("Horizontal");
+        
+        turnInput = SimpleInput.GetAxis("Horizontal");
         if (grounded)
         { 
           transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * Input.GetAxis("Vertical"), 0f));
+          transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * SimpleInput.GetAxis("Vertical"), 0f));
         }
 
         //steel wheels
@@ -80,6 +93,7 @@ public class CarController : MonoBehaviour
             {
                 theRB.AddForce(transform.forward * speedInput);
             }
+
         
         }
         else 

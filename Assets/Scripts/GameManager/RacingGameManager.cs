@@ -5,7 +5,14 @@ using UnityEngine;
 public class RacingGameManager : MonoBehaviour
 {
     public static RacingGameManager instance;
-    public int CurrentCoin;
+    [Header("Lives")]
+    [SerializeField] private int maxLives = 5;
+    [SerializeField] private int currentLives;
+
+    [Header("Coins")]
+    [SerializeField] private int totalCoins;
+    [SerializeField] private int currentEarnedCoins;
+
 
     private void Awake()
     {
@@ -20,30 +27,92 @@ public class RacingGameManager : MonoBehaviour
         }
         #endregion
 
-        //DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);
 
     }
 
-
-    void Update()
+    private void Start()
     {
-        
+        currentLives = maxLives;
     }
 
+
+    #region Lives Logic Handling
+
+    public void RecoverLife(int amount) 
+    {
+        currentLives += amount;
+        if(currentLives>= maxLives) 
+        {
+            currentLives = maxLives;
+        }
+    }
+
+    public void SpendLife(int amount) 
+    {
+        currentLives -= amount;
+        if (currentLives <= 0) 
+        {
+            currentLives = 0;
+        }
+    }
+
+
+
+    #endregion
+
+
+    #region Coins Logic Handleing
     public void AddCoin(int amount) 
     {
-        CurrentCoin += amount;
+        totalCoins += amount;
     }
 
     public void SpendCoin(int amount) 
     {
-        if (CurrentCoin - amount >= 0)
+        if (totalCoins - amount >= 0)
         {
-            CurrentCoin -= amount;
+            totalCoins -= amount;
         }
         else 
         {
             Debug.Log("Not Enough Coin!");
         }
+    }
+    
+
+    public void CalculateCurrentEarnedCoins(int amount) 
+    {
+        currentEarnedCoins += amount;
+    }
+
+    public void ClearCurrentEarnedCoins() 
+    {
+        currentEarnedCoins = 0;
+    }
+
+    #endregion
+
+
+
+    //getter
+    public int ReturnTotalCoins() 
+    {
+        return totalCoins;
+    }
+
+    public int ReturnCurrentEarnedCoins() 
+    {
+        return currentEarnedCoins;
+    }
+
+    public int ReturnMaxLives() 
+    {
+        return maxLives;
+    }
+
+    public int ReturnCurrentLives() 
+    {
+        return currentLives;
     }
 }

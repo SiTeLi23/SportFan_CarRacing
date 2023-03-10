@@ -87,14 +87,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7253738320417614118}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0.80901694, y: 0, z: 0, w: 0.58778536}
   m_LocalPosition: {x: -120.144615, y: -46.680428, z: 184.50851}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7253738321017011959}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -108, y: 0, z: 0}
 --- !u!33 &7253738320417614107
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -876,6 +876,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7253738321831904355}
   - component: {fileID: 7253738321831904354}
+  - component: {fileID: 2012324978}
+  - component: {fileID: 2012324982}
   m_Layer: 0
   m_Name: PlayerCar (Casual)
   m_TagString: Player
@@ -890,7 +892,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7253738321831904364}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071067}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -96.06, y: 1.1, z: -34.89}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 1
@@ -900,8 +902,8 @@ Transform:
   - {fileID: 7253738322128961950}
   - {fileID: 7253738320897809952}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &7253738321831904354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -929,6 +931,33 @@ MonoBehaviour:
   leftFrontWheel: {fileID: 7253738320417614117}
   rightFrontWheel: {fileID: 7253738321434148798}
   maxWheelTurn: 25
+--- !u!65 &2012324978
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7253738321831904364}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 495.07147, y: 313.7279, z: 832.0253}
+  m_Center: {x: -11.050392, y: 9.372139, z: 3.8826947}
+--- !u!114 &2012324982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7253738321831904364}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79da395068a497d4980d395e79d5cdf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audi: {fileID: 0}
+  minPitch: 0.1
 --- !u!1 &7253738322066216521
 GameObject:
   m_ObjectHideFlags: 0

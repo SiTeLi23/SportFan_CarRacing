@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
+    public TMP_Text lifeNumText;
     public TMP_Text coinNumText;
     public GameObject coinTextPopOut;
 
@@ -24,9 +26,20 @@ public class UIManager : MonoBehaviour
 
     }
 
-   public void UpdateCoinText() 
+    private void Start()
     {
-        coinNumText.text = RacingGameManager.instance.CurrentCoin.ToString();
+        UpdateLifeText();
+        UpdateCoinText();
+    }
+
+    public void UpdateLifeText() 
+    {
+        lifeNumText.text = RacingGameManager.instance.ReturnCurrentLives().ToString();
+    }
+
+    public void UpdateCoinText() 
+    {
+        coinNumText.text = RacingGameManager.instance.ReturnTotalCoins().ToString();
         
     }
 
@@ -37,5 +50,29 @@ public class UIManager : MonoBehaviour
         coinTextPopOut.GetComponent<TextPopOut>().popOutText.text = "Coins+ " + amount.ToString();
         Destroy(c, 1f);
     }
-       
+
+
+    #region Button Function
+
+    public void RestartGame() 
+    {     
+        RacingGameManager.instance.SpendLife(1);
+        UpdateLifeText();
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+    }
+
+    public void ReturnToMainMenu() 
+    {
+        RacingGameManager.instance.SpendLife(1);
+        UpdateLifeText();
+        Time.timeScale = 1;
+        SceneManager.LoadScene("MainMenu");
+    }
+
+
+
+    #endregion
+
 }

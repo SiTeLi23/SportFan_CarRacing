@@ -4,6 +4,23 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
+    public static CarController instance;
+
+    private void Awake()
+    {
+        #region Singleton
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+
+        }
+        #endregion
+    }
+
     public Rigidbody theRB;
 
     public float forwardAccel = 8f, reverseAccel = 4f, maxSpeed = 50f, turnStrength = 180, gravityForce = 10f ,dragOnground = 3f;
@@ -31,22 +48,15 @@ public class CarController : MonoBehaviour
         speedInput = 0;
 
 
-        if (Input.GetAxis("Vertical") > 0)
+        if (Input.GetAxis("Vertical") > 0|| SimpleInput.GetAxis("Vertical") > 0)
         {
             speedInput = Input.GetAxis("Vertical") * forwardAccel * 1000f;
-        }
-        else if (Input.GetAxis("Vertical") < 0)
-        {
-            speedInput = Input.GetAxis("Vertical") * reverseAccel * 1000f;
-        }
-
-
-        if (SimpleInput.GetAxis("Vertical") > 0)
-        {
             speedInput = SimpleInput.GetAxis("Vertical") * forwardAccel * 1000f;
+            SoundManager.instance.PlaySound(SoundManager.instance.engineIdle);
         }
-        else if (SimpleInput.GetAxis("Vertical") < 0)
+        else if (Input.GetAxis("Vertical") < 0 || SimpleInput.GetAxis("Vertical") < 0)
         {
+            speedInput = Input.GetAxis("Vertical") * reverseAccel * 1000f; 
             speedInput = SimpleInput.GetAxis("Vertical") * reverseAccel * 1000f;
         }
 
@@ -55,6 +65,8 @@ public class CarController : MonoBehaviour
         turnInput = Input.GetAxis("Horizontal");
         
         turnInput = SimpleInput.GetAxis("Horizontal");
+
+
         if (grounded)
         { 
           transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * Input.GetAxis("Vertical"), 0f));

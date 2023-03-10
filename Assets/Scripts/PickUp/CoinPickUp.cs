@@ -13,6 +13,7 @@ public class CoinPickUp : MonoBehaviour
             Debug.Log("coin added");
             Destroy(gameObject);
             RacingGameManager.instance.AddCoin(rewardAmount);
+            RacingGameManager.instance.CalculateCurrentEarnedCoins(rewardAmount);
             UIManager.instance.UpdateCoinText();
             UIManager.instance.PopOutCoinText(rewardAmount);
         }

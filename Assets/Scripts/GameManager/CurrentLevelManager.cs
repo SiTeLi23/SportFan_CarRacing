@@ -50,7 +50,7 @@ public class CurrentLevelManager : MonoBehaviour
 
     public void UpdateLevelTimeUI() 
     {
-        int currentTime = (int)levelTime;
+        int currentTime = Mathf.CeilToInt(levelTime);
         levelTimerText.text = currentTime.ToString();
     
     }

@@ -15,6 +15,8 @@ public class CurrentLevelManager : MonoBehaviour
     public GameObject gameOverPanel;
     public GameObject nextLevelPanel;
 
+    [Header("Text Display")]
+    public TMP_Text earnedCoinNum;
     
     
 
@@ -81,14 +83,23 @@ public class CurrentLevelManager : MonoBehaviour
         if (nextLevelPanel) 
         {
             nextLevelPanel.SetActive(true);
-            Time.timeScale = 0;
+
+         if (earnedCoinNum)
+         {
+             earnedCoinNum.text = "+" + RacingGameManager.instance.ReturnCurrentEarnedCoins().ToString();
+         }
+
+           Time.timeScale = 0;
         }
-    
+
+        SoundManager.instance.engineIdle.gameObject.SetActive(false);
+
     }
 
     public void GameStart() 
     {
         startGame = true;
+
     }
 
     public void ShowGameOverPanel() 
@@ -97,8 +108,13 @@ public class CurrentLevelManager : MonoBehaviour
         if (gameOverPanel)
         {
             gameOverPanel.SetActive(true);
+            Time.timeScale = 0;
         }
-        Time.timeScale = 0;
+
+
+
+        SoundManager.instance.engineIdle.gameObject.SetActive(false);
+
 
 
     }

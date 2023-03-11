@@ -58,6 +58,7 @@ public class UIManager : MonoBehaviour
     {     
         RacingGameManager.instance.SpendLife(1);
         UpdateLifeText();
+        RacingGameManager.instance.ClearCurrentEarnedCoins();
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
@@ -67,6 +68,7 @@ public class UIManager : MonoBehaviour
     {
         RacingGameManager.instance.SpendLife(1);
         UpdateLifeText();
+        RacingGameManager.instance.ClearCurrentEarnedCoins();
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
     }

@@ -5,8 +5,11 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
+    [Header("Audio Source")]
     public AudioSource engineIdle;
-    
+    public AudioSource coinCollect;
+    public AudioSource buttonClick;
+
 
     private void Awake()
     {
@@ -33,5 +36,10 @@ public class SoundManager : MonoBehaviour
     public void StopPlay(AudioSource audio) 
     {
         audio.Stop();
+    }
+
+    public void PlayButtonClick() 
+    {
+        buttonClick.Play();
     }
 }

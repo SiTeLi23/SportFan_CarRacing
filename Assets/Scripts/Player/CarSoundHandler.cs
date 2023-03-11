@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class CarSoundHandler : MonoBehaviour
 {
-    public AudioSource audi;
-    public float minPitch = 0.1f;
+    public AudioSource engineAudio;
+    public float minPitch = 0.3f, maxPitch = 1.5f, pitchOffset = 29f;
     private float pitchFromCar;
+
     void Start()
     {
         
-        audi.pitch = minPitch;
+        engineAudio.pitch = minPitch;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        pitchFromCar = Mathf.Clamp(CarController.instance.theRB.velocity.magnitude/10.0f, 0.1f, 0.7f);
+        pitchFromCar = Mathf.Clamp(CarController.instance.theRB.velocity.magnitude/pitchOffset, minPitch, maxPitch);
         if (pitchFromCar < minPitch)
         {
              
@@ -25,7 +25,7 @@ public class CarSoundHandler : MonoBehaviour
         }
         else 
         {
-            audi.pitch = pitchFromCar;
+            engineAudio.pitch = pitchFromCar;
         }
     }
 }

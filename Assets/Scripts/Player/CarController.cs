@@ -52,14 +52,16 @@ public class CarController : MonoBehaviour
         {
             speedInput = Input.GetAxis("Vertical") * forwardAccel * 1000f;
             speedInput = SimpleInput.GetAxis("Vertical") * forwardAccel * 1000f;
-            SoundManager.instance.PlaySound(SoundManager.instance.engineIdle);
+            if (SoundManager.instance.engineIdle.gameObject.activeInHierarchy)
+            {
+                SoundManager.instance.PlaySound(SoundManager.instance.engineIdle);
+            }
         }
         else if (Input.GetAxis("Vertical") < 0 || SimpleInput.GetAxis("Vertical") < 0)
         {
             speedInput = Input.GetAxis("Vertical") * reverseAccel * 1000f; 
             speedInput = SimpleInput.GetAxis("Vertical") * reverseAccel * 1000f;
         }
-
 
 
         turnInput = Input.GetAxis("Horizontal");
@@ -116,4 +118,6 @@ public class CarController : MonoBehaviour
         }
         
     }
+
+
 }

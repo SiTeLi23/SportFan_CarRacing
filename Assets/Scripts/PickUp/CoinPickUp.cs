@@ -16,6 +16,7 @@ public class CoinPickUp : MonoBehaviour
             RacingGameManager.instance.CalculateCurrentEarnedCoins(rewardAmount);
             UIManager.instance.UpdateCoinText();
             UIManager.instance.PopOutCoinText(rewardAmount);
+            SoundManager.instance.PlaySound(SoundManager.instance.coinCollect);
         }
     }
 }

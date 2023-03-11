@@ -9,12 +9,12 @@ public class MainMenuManager : MonoBehaviour
     public GameObject mainMenuUI;    
     public GameObject profileUI;
     public GameObject settingUI;
+    public GameObject tipsUI;
+    public GameObject loadingUI;
     void Start()
     {
-        mainMenuUI.SetActive(true);
-        profileUI.SetActive(false);
-        settingUI.SetActive(false);
-    }
+        CloseCurrentUI();
+}
 
     // Update is called once per frame
     void Update()
@@ -45,6 +45,16 @@ public class MainMenuManager : MonoBehaviour
         {
             settingUI.SetActive(false);
         }
+
+        if (tipsUI)
+        {
+            tipsUI.SetActive(false);
+        }
+
+        if (loadingUI) 
+        {
+            loadingUI.SetActive(false);
+        }
     }
 
     public void OpenProfileUI()
@@ -70,6 +80,32 @@ public class MainMenuManager : MonoBehaviour
         if (settingUI)
         {
             settingUI.SetActive(true);
+        }
+    }
+
+    public void OpenTipsUI()
+    {
+        if (mainMenuUI)
+        {
+            mainMenuUI.SetActive(false);
+        }
+
+        if (tipsUI)
+        {
+            tipsUI.SetActive(true);
+        }
+    }
+
+    public void OpenLoadingUI()
+    {
+        if (mainMenuUI)
+        {
+            mainMenuUI.SetActive(false);
+        }
+
+        if (loadingUI)
+        {
+            loadingUI.SetActive(true);
         }
     }
 }

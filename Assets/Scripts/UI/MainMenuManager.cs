@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -11,9 +12,15 @@ public class MainMenuManager : MonoBehaviour
     public GameObject settingUI;
     public GameObject tipsUI;
     public GameObject loadingUI;
+
+    [Header("Text Reference")]
+    public TMP_Text profileLivesText;
+    public TMP_Text profileCoinsText;
     void Start()
     {
         CloseCurrentUI();
+        UpdateProfileCoins();
+        UpdateProfileLives();
 }
 
     // Update is called once per frame
@@ -107,5 +114,16 @@ public class MainMenuManager : MonoBehaviour
         {
             loadingUI.SetActive(true);
         }
+    }
+
+
+    public void UpdateProfileLives() 
+    {
+        profileLivesText.text = RacingGameManager.instance.ReturnCurrentLives().ToString();
+    }
+
+    public void UpdateProfileCoins() 
+    {
+        profileCoinsText.text = RacingGameManager.instance.ReturnTotalCoins().ToString();
     }
 }

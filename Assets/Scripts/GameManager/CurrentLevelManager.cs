@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Cinemachine;
 
 public class CurrentLevelManager : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class CurrentLevelManager : MonoBehaviour
 
     public bool startGame;
     public bool gameOver;
+
+    public Transform lookPoint;
+    public CinemachineVirtualCamera cm;
 
     [Header("UI Reference")]
     public GameObject gameOverPanel;
@@ -32,6 +36,10 @@ public class CurrentLevelManager : MonoBehaviour
             Destroy(gameObject);
         }
         #endregion
+
+        lookPoint = GameObject.FindGameObjectWithTag("LookPoint").transform;
+        cm.LookAt = lookPoint;
+        cm.Follow = lookPoint;
     }
 
 

@@ -73,6 +73,13 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+    public void LoadNextLevel(string nextLevelToLoad)
+    {
+        Time.timeScale = 1;
+        RacingGameManager.instance.ClearCurrentEarnedCoins();
+        SceneManager.LoadScene(nextLevelToLoad);
+    }
+
 
 
     #endregion

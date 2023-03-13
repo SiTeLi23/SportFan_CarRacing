@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class CurrentLevelManager : MonoBehaviour
 {
@@ -119,11 +120,9 @@ public class CurrentLevelManager : MonoBehaviour
             Time.timeScale = 0;
         }
 
-
-
         SoundManager.instance.engineIdle.gameObject.SetActive(false);
 
-
-
     }
+
+
 }

@@ -55,7 +55,7 @@ public class CarController : MonoBehaviour
             speedInput = SimpleInput.GetAxis("Vertical") * forwardAccel * 1000f;
             if (SoundManager.instance.engineIdle.gameObject.activeInHierarchy)
             {
-                SoundManager.instance.PlaySound(SoundManager.instance.engineIdle);
+                //SoundManager.instance.PlaySound(SoundManager.instance.engineIdle);
             }
         }
         else if (Input.GetAxis("Vertical") < 0 || SimpleInput.GetAxis("Vertical") < 0)

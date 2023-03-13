@@ -21,20 +21,22 @@ public class MainMenuManager : MonoBehaviour
         CloseCurrentUI();
         UpdateProfileCoins();
         UpdateProfileLives();
-}
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
+
+
 
     public void PlayLevel(string levelName) 
     {
-
-        SceneManager.LoadScene(levelName);
+        StartCoroutine(LoadLevel(levelName));
+        
     }
 
+    public IEnumerator LoadLevel(string levelName) 
+    {
+        yield return new WaitForSeconds(0.1f);
+        SceneManager.LoadScene(levelName);
+
+    }
 
     public void CloseCurrentUI() 
     {

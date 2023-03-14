@@ -48,14 +48,15 @@ public class CarController : MonoBehaviour
 
         speedInput = 0;
 
-
+        //handling moving forward and backward
         if (Input.GetAxis("Vertical") > 0|| SimpleInput.GetAxis("Vertical") > 0)
         {
             speedInput = Input.GetAxis("Vertical") * forwardAccel * 1000f;
             speedInput = SimpleInput.GetAxis("Vertical") * forwardAccel * 1000f;
             if (SoundManager.instance.engineIdle.gameObject.activeInHierarchy)
             {
-                //SoundManager.instance.PlaySound(SoundManager.instance.engineIdle);
+                //play engine sound if there's speed
+                SoundManager.instance.PlaySound(SoundManager.instance.engineIdle);
             }
         }
         else if (Input.GetAxis("Vertical") < 0 || SimpleInput.GetAxis("Vertical") < 0)
@@ -64,11 +65,9 @@ public class CarController : MonoBehaviour
             speedInput = SimpleInput.GetAxis("Vertical") * reverseAccel * 1000f;
         }
 
-
+        //handling turning and steeling
         turnInput = Input.GetAxis("Horizontal");
-        
         turnInput = SimpleInput.GetAxis("Horizontal");
-
 
         if (grounded)
         { 
@@ -76,7 +75,7 @@ public class CarController : MonoBehaviour
           transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * SimpleInput.GetAxis("Vertical"), 0f));
         }
 
-        //steel wheels
+        //steeling wheels 
         leftFrontWheel.localRotation = Quaternion.Euler(leftFrontWheel.localRotation.eulerAngles.x,
                                                         (turnInput * maxWheelTurn) - 180,
                                                         leftFrontWheel.localRotation.eulerAngles.z);
@@ -85,6 +84,7 @@ public class CarController : MonoBehaviour
                                                 turnInput * maxWheelTurn,
                                                 rightFrontWheel.localRotation.eulerAngles.z);
 
+        //cause we are actually moving the sphere's rigidbody, the car model should also keep up with the rigidbody's transform
         transform.position = theRB.transform.position;
     }
 
@@ -103,18 +103,16 @@ public class CarController : MonoBehaviour
         if (grounded) 
         {
             theRB.drag = dragOnground;
-
             if (Mathf.Abs(speedInput) > 0) 
             {
+                //if the car is on the ground, applying force to the rigid body to move the car.
                 theRB.AddForce(transform.forward * speedInput);
             }
-
-        
         }
         else 
         {
             theRB.drag = 0.1f;
-            //push downward to ground
+            //push downward to ground if the car is in air, not sure whether gonna use this feature
             theRB.AddForce(Vector3.up * -gravityForce * 100f);
         }
         

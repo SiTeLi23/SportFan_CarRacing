@@ -10,6 +10,12 @@ public class UIManager : MonoBehaviour
     public TMP_Text lifeNumText;
     public TMP_Text coinNumText;
     public GameObject coinTextPopOut;
+    public GameObject transferLevelHint;
+    public GameObject fadeOutScreen;
+
+    //UI Reference
+    public GameObject endLevelPanel;
+    public GameObject endLevelButton;
 
     private void Awake()
     {
@@ -49,6 +55,47 @@ public class UIManager : MonoBehaviour
         c.transform.SetParent(transform);
         coinTextPopOut.GetComponent<TextPopOut>().popOutText.text = "Coins+ " + amount.ToString();
         Destroy(c, 1f);
+    }
+
+    public void ShowTransferMessage() 
+    {
+        if (transferLevelHint)
+        {
+            transferLevelHint.SetActive(true);
+        }
+    }
+
+    public void StartFadeOut() 
+    {
+        fadeOutScreen.SetActive(true);
+    }
+
+    public void ShowEndLevelPanel()
+    {
+        if (endLevelPanel)
+        {
+            endLevelPanel.SetActive(true);
+
+        }
+
+        if (endLevelButton) 
+        {
+            if (endLevelButton.activeInHierarchy) 
+            {
+                endLevelButton.SetActive(false);
+            }
+        }
+
+        if (CurrentLevelManager.instance.startGame == true)
+        {
+            CurrentLevelManager.instance.startGame = false;
+        }
+    }
+
+    public void CloseEndLevelPanel() 
+    {
+        endLevelPanel.SetActive(false);
+        endLevelButton.SetActive(true);
     }
 
 

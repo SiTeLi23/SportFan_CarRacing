@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -11,23 +12,31 @@ public class MainMenuManager : MonoBehaviour
     public GameObject settingUI;
     public GameObject tipsUI;
     public GameObject loadingUI;
+
+    [Header("Text Reference")]
+    public TMP_Text profileLivesText;
+    public TMP_Text profileCoinsText;
     void Start()
     {
         CloseCurrentUI();
-}
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        UpdateProfileCoins();
+        UpdateProfileLives();
     }
+
+
 
     public void PlayLevel(string levelName) 
     {
-
-        SceneManager.LoadScene(levelName);
+        StartCoroutine(LoadLevel(levelName));
+        
     }
 
+    public IEnumerator LoadLevel(string levelName) 
+    {
+        yield return new WaitForSeconds(0.1f);
+        SceneManager.LoadScene(levelName);
+
+    }
 
     public void CloseCurrentUI() 
     {
@@ -107,5 +116,16 @@ public class MainMenuManager : MonoBehaviour
         {
             loadingUI.SetActive(true);
         }
+    }
+
+
+    public void UpdateProfileLives() 
+    {
+        profileLivesText.text = RacingGameManager.instance.ReturnCurrentLives().ToString();
+    }
+
+    public void UpdateProfileCoins() 
+    {
+        profileCoinsText.text = RacingGameManager.instance.ReturnTotalCoins().ToString();
     }
 }

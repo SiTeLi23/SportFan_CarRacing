@@ -2,21 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class CurrentLevelManager : MonoBehaviour
 {
 
     public static CurrentLevelManager instance;
 
+    public bool isEndLevel;
     public bool startGame;
     public bool gameOver;
+
+    public Transform lookPoint;
+    public CinemachineVirtualCamera cm;
+    public string nextLevelToLoad;
 
     [Header("UI Reference")]
     public GameObject gameOverPanel;
     public GameObject nextLevelPanel;
 
+
     [Header("Text Display")]
     public TMP_Text earnedCoinNum;
+
     
     
 
@@ -32,6 +41,10 @@ public class CurrentLevelManager : MonoBehaviour
             Destroy(gameObject);
         }
         #endregion
+
+        lookPoint = GameObject.FindGameObjectWithTag("LookPoint").transform;
+        cm.LookAt = lookPoint;
+        cm.Follow = lookPoint;
     }
 
 
@@ -89,12 +102,31 @@ public class CurrentLevelManager : MonoBehaviour
              earnedCoinNum.text = "+" + RacingGameManager.instance.ReturnCurrentEarnedCoins().ToString();
          }
 
-           Time.timeScale = 0;
+           //Time.timeScale = 0;
         }
 
-        SoundManager.instance.engineIdle.gameObject.SetActive(false);
+        startGame = false;
+        UIManager.instance.ShowTransferMessage();
+
+        if (nextLevelToLoad != null)
+        {
+            StartCoroutine(LoadNextLevel());
+        }
+
+        //SoundManager.instance.engineIdle.gameObject.SetActive(false);
 
     }
+
+
+    IEnumerator LoadNextLevel() 
+    {
+
+        yield return new WaitForSeconds(5f);
+        UIManager.instance.StartFadeOut();
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene(nextLevelToLoad);
+    }
+
 
     public void GameStart() 
     {
@@ -111,11 +143,9 @@ public class CurrentLevelManager : MonoBehaviour
             Time.timeScale = 0;
         }
 
-
-
         SoundManager.instance.engineIdle.gameObject.SetActive(false);
 
-
-
     }
+
+
 }

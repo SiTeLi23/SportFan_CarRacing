@@ -8,7 +8,7 @@ public class CoinPickUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player") 
+        if(other.tag == "Player"&&CurrentLevelManager.instance.startGame == true) 
         {
             Debug.Log("coin added");
             Destroy(gameObject);

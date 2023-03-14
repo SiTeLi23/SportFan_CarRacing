@@ -422,7 +422,7 @@ GameObject:
   - component: {fileID: 7253738320634217239}
   m_Layer: 0
   m_Name: Lookpoint
-  m_TagString: Untagged
+  m_TagString: LookPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -917,7 +917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theRB: {fileID: 7253738322128961949}
-  forwardAccel: 8
+  forwardAccel: 11
   reverseAccel: 4
   maxSpeed: 50
   turnStrength: 90
@@ -930,7 +930,7 @@ MonoBehaviour:
   groundRayPoint: {fileID: 7253738320897809952}
   leftFrontWheel: {fileID: 7253738320417614117}
   rightFrontWheel: {fileID: 7253738321434148798}
-  maxWheelTurn: 25
+  maxWheelTurn: 30
 --- !u!65 &2012324978
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -956,8 +956,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79da395068a497d4980d395e79d5cdf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audi: {fileID: 0}
-  minPitch: 0.1
+  engineAudio: {fileID: 0}
+  minPitch: 0.3
+  maxPitch: 0.6
+  pitchOffset: 29
 --- !u!1 &7253738322066216521
 GameObject:
   m_ObjectHideFlags: 0

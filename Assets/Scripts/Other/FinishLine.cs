@@ -11,7 +11,14 @@ public class FinishLine : MonoBehaviour
         if(other.tag == "Player" && CurrentLevelManager.instance.gameOver == false) 
         {
             gameObject.SetActive(false);
-            CurrentLevelManager.instance.ShowNextLevelPanel();
+            if (CurrentLevelManager.instance.isEndLevel == false)
+            {
+                CurrentLevelManager.instance.ShowNextLevelPanel();
+            }
+            else 
+            {
+                UIManager.instance.ShowEndLevelPanel();
+            }
         }
     }
 }

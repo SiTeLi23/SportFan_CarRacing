@@ -9,6 +9,12 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
     public TMP_Text lifeNumText;
     public TMP_Text coinNumText;
+    public TMP_Text scoreNumText;
+    public TMP_Text totalScoreNumText;
+    public TMP_Text bestScoreNumText;
+    public TMP_Text gameOverScoreNumText;
+    public TMP_Text gameOverBestScoreNumText;
+
     public GameObject coinTextPopOut;
     public GameObject transferLevelHint;
     public GameObject fadeOutScreen;
@@ -72,6 +78,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowEndLevelPanel()
     {
+        UpdateScoreUI();
         if (endLevelPanel)
         {
             endLevelPanel.SetActive(true);
@@ -96,6 +103,15 @@ public class UIManager : MonoBehaviour
     {
         endLevelPanel.SetActive(false);
         endLevelButton.SetActive(true);
+    }
+
+    public void UpdateScoreUI() 
+    {
+        scoreNumText.text = "Score: " +CurrentLevelManager.instance.ReturnScore().ToString();
+        totalScoreNumText.text = RacingGameManager.instance.ReturnTotalScore().ToString();
+        bestScoreNumText.text = RacingGameManager.instance.ReturnTotalScore().ToString();
+        gameOverScoreNumText.text = RacingGameManager.instance.ReturnTotalScore().ToString();
+        gameOverBestScoreNumText.text = RacingGameManager.instance.ReturnTotalScore().ToString();
     }
 
 

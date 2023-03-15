@@ -8,6 +8,7 @@ public class RacingGameManager : MonoBehaviour
     [Header("Lives")]
     [SerializeField] private int maxLives = 5;
     [SerializeField] private int currentLives;
+    [SerializeField] private int totalScore;
 
     [Header("Coins")]
     [SerializeField] private int totalCoins;
@@ -94,6 +95,19 @@ public class RacingGameManager : MonoBehaviour
     #endregion
 
 
+    #region Handling Score Logic;
+    public void AddToTotalScore(int amount) 
+    {
+        totalScore += amount;
+    }
+
+    public void ClearTotalScore() 
+    {
+        totalScore = 0;
+    }
+
+    #endregion
+
 
     //getter
     public int ReturnTotalCoins() 
@@ -114,5 +128,10 @@ public class RacingGameManager : MonoBehaviour
     public int ReturnCurrentLives() 
     {
         return currentLives;
+    }
+
+    public int ReturnTotalScore() 
+    {
+        return totalScore;
     }
 }

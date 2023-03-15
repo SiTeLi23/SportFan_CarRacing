@@ -13,6 +13,7 @@ public class CurrentLevelManager : MonoBehaviour
     public bool isEndLevel;
     public bool startGame;
     public bool gameOver;
+    [SerializeField] private int score;
 
     public Transform lookPoint;
     public CinemachineVirtualCamera cm;
@@ -25,6 +26,10 @@ public class CurrentLevelManager : MonoBehaviour
 
     [Header("Text Display")]
     public TMP_Text earnedCoinNum;
+
+    [Header("Shader")]
+    public GameObject topShader;
+    public GameObject fullShader;
 
     
     
@@ -82,6 +87,28 @@ public class CurrentLevelManager : MonoBehaviour
         
     }
 
+    //calculate current level's score
+    public int ReturnScore() 
+    {
+        score = Mathf.CeilToInt(levelTime) * 100 + RacingGameManager.instance.ReturnCurrentEarnedCoins();
+        RacingGameManager.instance.AddToTotalScore(score);
+        return score;
+    }
+
+    public void IncreaseScore(int amount) 
+    {
+        score += amount;
+    }
+
+    public void DescreasScore(int amount) 
+    {
+        score -= amount;
+        if(score <= 0) 
+        {
+            score = 0;
+        }
+    }
+
 
     public void UpdateLevelTimeUI() 
     {
@@ -102,8 +129,18 @@ public class CurrentLevelManager : MonoBehaviour
              earnedCoinNum.text = "+" + RacingGameManager.instance.ReturnCurrentEarnedCoins().ToString();
          }
 
+            UIManager.instance.UpdateScoreUI();
            //Time.timeScale = 0;
         }
+        if (topShader)
+        {
+            topShader.SetActive(false);
+        }
+        if (fullShader)
+        {
+            fullShader.SetActive(true);
+        }
+
 
         startGame = false;
         UIManager.instance.ShowTransferMessage();
@@ -137,6 +174,7 @@ public class CurrentLevelManager : MonoBehaviour
     public void ShowGameOverPanel() 
     {
         gameOver = true;
+        UIManager.instance.UpdateScoreUI();
         if (gameOverPanel)
         {
             gameOverPanel.SetActive(true);

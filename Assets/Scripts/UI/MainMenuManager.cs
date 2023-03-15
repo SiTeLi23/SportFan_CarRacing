@@ -21,6 +21,7 @@ public class MainMenuManager : MonoBehaviour
         CloseCurrentUI();
         UpdateProfileCoins();
         UpdateProfileLives();
+        RacingGameManager.instance.ClearTotalScore();
     }
 
 

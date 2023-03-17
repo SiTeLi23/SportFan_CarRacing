@@ -951,15 +951,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7253738321831904364}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79da395068a497d4980d395e79d5cdf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   engineAudio: {fileID: 0}
   minPitch: 0.3
-  maxPitch: 0.6
+  maxPitch: 1.6
   pitchOffset: 29
+  EngineSoundMixer: {fileID: 24100000, guid: 4afb387264807429ea004bf381c50980, type: 2}
 --- !u!1 &7253738322066216521
 GameObject:
   m_ObjectHideFlags: 0

@@ -389,6 +389,10 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: df6c212e9f9df514a949f1083cba8fe1, type: 3}
+    - target: {fileID: 8845649596569239743, guid: 0361f4ab6dcf83c48abc73f642405847, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 4afb387264807429ea004bf381c50980, type: 2}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 0361f4ab6dcf83c48abc73f642405847, type: 3}

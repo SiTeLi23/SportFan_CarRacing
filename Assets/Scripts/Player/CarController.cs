@@ -32,6 +32,7 @@ public class CarController : MonoBehaviour
     public LayerMask whatIsGround;
     public float groundRayLength = .5f;
     public Transform groundRayPoint;
+    public Transform body;
 
     public Transform leftFrontWheel, rightFrontWheel;
     public float maxWheelTurn = 25f;
@@ -86,6 +87,15 @@ public class CarController : MonoBehaviour
 
         //cause we are actually moving the sphere's rigidbody, the car model should also keep up with the rigidbody's transform
         transform.position = theRB.transform.position;
+
+        if (turnInput == 0) {
+            body.localRotation = Quaternion.Lerp(body.localRotation, Quaternion.Euler(0f, 0f, 0f), Time.deltaTime);
+        } else if (turnInput > 0) {
+            body.localRotation = Quaternion.Lerp(body.localRotation, Quaternion.Euler(0f, 10f, 0f), Time.deltaTime);
+        } else {
+            body.localRotation = Quaternion.Lerp(body.localRotation, Quaternion.Euler(0f, -10f, 0f), Time.deltaTime);
+        }
+        
     }
 
     private void FixedUpdate()

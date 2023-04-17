@@ -15430,6 +15430,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: aca398797f1b4dc47bdfac6fb246828c, type: 3}
+--- !u!82 &1203331749295838667 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 734203949, guid: aca398797f1b4dc47bdfac6fb246828c, type: 3}
+  m_PrefabInstance: {fileID: 1203331749295838666}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1203331749295838668 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1623230986, guid: aca398797f1b4dc47bdfac6fb246828c, type: 3}
+  m_PrefabInstance: {fileID: 1203331749295838666}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1647893361586002761 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2021002698561638144, guid: 21ed4abb57e14ad4ebd32af304f42f69, type: 3}
@@ -16204,9 +16214,13 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2012324982, guid: 159e90d37f8b3a54c9876f2b4bf7b0f6, type: 3}
+      propertyPath: gearChange
+      value: 
+      objectReference: {fileID: 1203331749295838667}
+    - target: {fileID: 2012324982, guid: 159e90d37f8b3a54c9876f2b4bf7b0f6, type: 3}
       propertyPath: engineAudio
       value: 
-      objectReference: {fileID: 460410420}
+      objectReference: {fileID: 1203331749295838668}
     - target: {fileID: 2012324982, guid: 159e90d37f8b3a54c9876f2b4bf7b0f6, type: 3}
       propertyPath: pitchOffset
       value: 29
